@@ -1,0 +1,79 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Mi Carrito de Compra</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ng-container *ngIf="cartList$ | async as cartList">
+    <ion-content>
+        <ion-grid>
+            <ion-row *ngFor="let cartItem of cartList.products">
+                <ion-col>
+                    <ion-card class="product-card" mode="ios">
+                        <div class="img-container">
+                            <img
+                                [alt]="cartItem.ingredient.name"
+                                [src]="cartItem.ingredient.image.data.attributes.url"
+                            />
+                        </div>
+                        <div class="product-data">
+                            <h5 class="product-name">
+                                {{ cartItem.ingredient.name }}
+                            </h5>
+                            <p class="product-amount">
+                                {{ cartItem.amount }} {{
+                                cartItem.ingredient.measurementUnit }}
+                            </p>
+                        </div>
+                        <div>
+                            <ion-button
+                                (click)="removeFromCart(cartItem.ingredient)"
+                                fill="clear"
+                                mode="ios"
+                            >
+                                <ion-icon
+                                    slot="icon-only"
+                                    name="trash-outline"
+                                    color="danger"
+                                ></ion-icon>
+                            </ion-button>
+                        </div>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+            <ng-container *ngIf="cartList.products.length <= 0">
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <h1 class="empty-cart-list">
+                            No hay nada en el carrito, por favor añade productos
+                        </h1>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <img
+                            class="empty-img"
+                            alt="Empty"
+                            src="/assets/images/empty_cart.svg"
+                        />
+                    </ion-col>
+                </ion-row>
+            </ng-container>
+        </ion-grid>
+    </ion-content>
+    <ion-footer class="footer" *ngIf="cartList.products.length > 0">
+        <ion-row>
+            <ion-col>
+                <ion-button mode="ios" expand="block" (click)="exportPdf()"
+                    >Exportar PDF</ion-button
+                >
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-button mode="ios" expand="block" (click)="comparePrices()"
+                    >Comparar precios</ion-button
+                >
+            </ion-col>
+        </ion-row>
+    </ion-footer>
+</ng-container>

@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Comparadora de precios</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ng-container *ngIf="cartList$ | async as cartList">
+    <ion-content>
+        <ion-grid>
+            <ion-row *ngFor="let product of cartList.products">
+                <ion-col class="ion-text-center">
+                    <app-product-price-card [product]="product"></app-product-price-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-content>
+    <ion-footer class="footer">
+        <ion-row>
+            <ion-col class="ion-text-center">
+                <div class="store-compare">
+                    <div class="store-logos">
+                        <img alt="Mercadona" src="/assets/images/mercadona-logo.png" />
+                        <img alt="Carrefour" src="/assets/images/carrefour-logo.png" />
+                        <img alt="Dia" src="/assets/images/dia-logo.png" />
+                    </div>
+                    <div class="store-prices">
+                        <h3>{{ marketPrices?.mercadona?.amount?.toFixed(2) || 0 }}€</h3>
+                        <h3>{{ marketPrices?.carrefour?.amount?.toFixed(2) || 0 }}€</h3>
+                        <h3>{{ marketPrices?.dia?.amount?.toFixed(2) || 0 }}€</h3>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row class="ion-margin-bottom">
+            <ion-col>
+                <ion-button (click)="clearCartList()" expand="block" routerDirection="back" mode="ios">Nueva lista</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-footer>
+</ng-container>

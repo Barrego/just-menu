@@ -1,0 +1,7 @@
+{
+    "name": "Just Menu",
+    "integrations": {
+        "capacitor": {}
+    },
+    "type": "angular"
+}

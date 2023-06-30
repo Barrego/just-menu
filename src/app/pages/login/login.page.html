@@ -1,0 +1,53 @@
+<ion-content class="ion-content">
+    <ion-grid>
+        <ion-row class="ion-text-center">
+            <ion-col class="login-block">
+                <ion-img
+                class="icon-app"
+                src="/assets/images/LOGOJUSTMENU.PNG"
+                ></ion-img>
+        </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class="ion-text-center">
+                <h3>Login</h3>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="10" offset="1">
+                <ion-input
+                    class="input-field"
+                    label="Email/Usuario"
+                    label-placement="floating"
+                    fill="outline"
+                    placeholder="Introduce tu email"
+                    type="text"
+                    [(ngModel)]="username"
+                ></ion-input>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="10" offset="1">
+                <ion-input
+                    class="input-field"
+                    label="Contraseña"
+                    label-placement="floating"
+                    fill="outline"
+                    placeholder="Introduce tu contraseña"
+                    type="password"
+                    [(ngModel)]="password"
+                ></ion-input>
+            </ion-col>
+        </ion-row>
+        <ion-row class="ion-margin-top">
+            <ion-col class="login-btn" size="10" offset="1">
+                <ion-button (click)="login()" expand="block" mode="ios">Login</ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class="login-btn" size="10" offset="1">
+                <ion-button (click)="register()" expand="block" fill="clear" mode="ios">Registrarse</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-row class="ion-margin-top">
+            <ion-col>
+                <ion-searchbar [(ngModel)]="searchText" placeholder="Introduce el nombre de un platillo" mode="ios" [animated]="true"></ion-searchbar>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-grid>
+        <ng-container *ngIf="dishes$ | async as dishes">
+            <ion-row *ngFor="let dish of dishes | filterDishes: searchText">
+                <ion-col class="ion-no-padding">
+                    <ion-card (click)="navigateToDish(dish.id)" mode="ios" class="dish-card">
+                        <img
+                            [alt]="dish.name"
+                            [src]="dish.image.data.attributes.url"
+                        />
+                        <ion-card-header>
+                            <ion-card-title>{{ dish.name }}</ion-card-title>
+                            <ion-card-subtitle>5 - 10 minutos</ion-card-subtitle>
+                        </ion-card-header>
+
+                        <ion-card-content>
+                            <ion-chip *ngFor="let tag of dish.tags.data" color="primary" outline="true">{{ tag.attributes.name }}</ion-chip>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ng-container>
+    </ion-grid>
+</ion-content>
+<ion-fab horizontal="end" vertical="bottom">
+    <ion-fab-button (click)="createDish()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+</ion-fab>

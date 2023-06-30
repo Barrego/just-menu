@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Ajustes</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-button
+                    (click)="closeSession()"
+                    expand="block"
+                    fill="outline"
+                    color="medium"
+                    routerDirection="back"
+                    mode="ios"
+                    >Logout
+                    <ion-icon slot="end" name="log-out-outline"></ion-icon>
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+<ion-footer class="footer">
+    <ion-row>
+        <ion-col>
+            <ion-row>
+                <ion-col class="ion-text-center">
+                    <p class="app-version">Just Menu - v{{ APP_VERSION }}</p>
+                </ion-col>
+            </ion-row>
+        </ion-col>
+    </ion-row>
+</ion-footer>

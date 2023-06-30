@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button color="medium" (click)="cancel()">Cancelar</ion-button>
+        </ion-buttons>
+        <ion-title>Selecciona tags</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ng-container *ngIf="tags$ | async as tags">
+            <ngForm [formGroup]="tagsForm">
+                <ion-row *ngFor="let tag of tags">
+                    <ion-col>
+                        <ion-item>
+                            <ion-checkbox [formControlName]="tag.id" justify="space-between" mode="ios">{{ tag.name }}</ion-checkbox>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ngForm>
+        </ng-container>
+    </ion-grid>
+</ion-content>
+<ion-footer>
+    <ion-row>
+        <ion-col>
+            <ion-button (click)="confirm()" expand="block" mode="ios">Añadir tags</ion-button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

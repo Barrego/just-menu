@@ -1,0 +1,23 @@
+.login-block {
+    margin-top: 20%;
+    margin-inline: 0;
+    margin-block-end: auto;
+}
+
+.input-field {
+    border: 1px solid var(--color-light);
+    border-radius: 10px;
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+}
+
+.login-btn {
+    padding: 0 5px;
+}
+.icon-app{
+    display: -webkit-inline-box;
+    width:75%;
+    height: 75%;
+}
+
+.ion-content {--overflow: hidden}

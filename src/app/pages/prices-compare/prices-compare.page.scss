@@ -1,0 +1,31 @@
+.footer {
+    background: var(--color-white);
+
+    .store-compare {
+        display: flex;
+        flex-direction: column;
+
+        .store-logos {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            img {
+                width: 16%;
+                opacity: 0.8;
+            }
+        }
+
+        .store-prices {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            color: var(--ion-color-dark);
+
+            h3 {
+                opacity: 0.7;
+                margin: 0.25rem 0 0 0;
+            }
+        }
+    }
+}

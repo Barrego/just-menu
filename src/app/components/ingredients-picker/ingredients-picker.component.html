@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button color="medium" (click)="cancel()">Cancelar</ion-button>
+        </ion-buttons>
+        <ion-title>Selecciona ingredientes</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ng-container *ngIf="ingredients$ | async as ingredients">
+    <ion-content>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-searchbar [(ngModel)]="searchText" placeholder="Introduce el nombre de un ingrediente" mode="ios" [animated]="true"></ion-searchbar>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngFor="let product of ingredients | filterIngredients: searchText">
+                <ion-col>
+                    <app-product-card [product]="product" [isCartSelection]="false" (onCartProductAdded)="handleIngredientAdded($event)"></app-product-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-content>
+    <ion-footer>
+        <ion-row>
+            <ion-col>
+                <ion-button (click)="confirm()" expand="block" mode="ios">Añadir {{ selectedIngredients.length }} ingredientes</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-footer>
+</ng-container>

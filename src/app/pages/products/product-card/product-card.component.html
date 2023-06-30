@@ -1,0 +1,18 @@
+<ion-card class="product-card" mode="ios">
+    <div class="img-container">
+        <img
+            [alt]="product.id"
+            [src]="product.image.data.attributes.url"
+        />
+    </div>
+    <div class="product-data">
+        <h5 class="product-name">{{ product.name }}</h5>
+        <div class="product-selection">
+            <ion-icon (click)="modifyAmount('subtract')" name="remove-circle-outline" color="medium"></ion-icon>
+            <ion-icon (click)="modifyAmount('add')" name="add-circle-outline" color="medium"></ion-icon>
+            <input [formControl]="productAmount" type="number" [value]="productAmount.value" />
+            <p>{{ product.measurementUnit }}</p>
+        </div>
+    </div>
+    <ion-icon (click)="addCartProduct(product)" class="cart-icon" [name]="isCartSelection ? 'cart-outline' : 'chevron-forward-circle-outline'" [color]="productAmount.value ? 'primary' : 'medium'"></ion-icon>
+</ion-card>

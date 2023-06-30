@@ -1,0 +1,83 @@
+<ion-header class="header">
+    <ion-toolbar class="toolbar">
+        <ion-buttons slot="start">
+            <ion-back-button
+                mode="ios"
+                defaultHref="/dishes"
+                text="Volver"
+            ></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col class="ion-text-center">
+                <h1>Crear un nuevo platillo</h1>
+            </ion-col>
+        </ion-row>
+        <ion-row class="ion-margin-top">
+            <ion-col>
+                <ion-input [(ngModel)]="dishModel.name" label="Nombre" label-placement="floating" fill="outline" placeholder="Introduce el nombre de tu platillo" mode="md" class="name-input"></ion-input>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <div class="editor-container">
+                    <p>Receta</p>
+                    <ckeditor [(ngModel)]="dishModel.recipe" [editor]="recipeEditor"></ckeditor>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row class="ion-margin-top">
+            <ion-col>
+                <ion-button expand="block" fill="outline" mode="ios" (click)="openIngredientsPickerModal()">Seleccionar ingredientes</ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let product of dishModel.selectedIngredients">
+            <ion-col>
+                <ion-card class="product-card" mode="ios">
+                    <div class="img-container">
+                        <img
+                            [alt]="product.ingredient.name"
+                            [src]="product.ingredient.image.data.attributes.url"
+                        />
+                    </div>
+                    <div class="product-data">
+                        <h5 class="product-name">
+                            {{ product.ingredient.name }}
+                        </h5>
+                        <p class="product-amount">
+                            {{ product.amount }} {{
+                                product.ingredient.measurementUnit }}
+                        </p>
+                    </div>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+        <ion-row class="ion-margin-top">
+            <ion-col>
+                <ion-button expand="block" fill="outline" mode="ios" (click)="openTagPickerModal()">Seleccionar tags</ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-chip *ngFor="let selectedTag of dishModel.selectedTags">{{ selectedTag.name }}</ion-chip>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+<ion-footer>
+    <ion-row>
+        <ion-col>
+            <ion-row>
+                <ion-col class="ion-text-center">
+                    <ion-button *ngIf="!isLoading; else loading" (click)="createDish()" [disabled]="!isFormValid()" expand="block" mode="ios">Crear platillo</ion-button>
+                    <ng-template #loading>
+                        <ion-spinner name="crescent" color="primary"></ion-spinner>
+                    </ng-template>
+                </ion-col>
+            </ion-row>
+        </ion-col>
+    </ion-row>
+</ion-footer>

@@ -1,0 +1,23 @@
+p, h1, h2, h3 {
+    margin: 0;
+}
+
+ion-col {
+    padding: 0 1rem;
+}
+
+.portions-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        color: var(--ion-color-dark);
+        width: 5.5rem;
+        text-align: center;
+    }
+}
+
+.footer {
+    background: var(--color-white);
+}

@@ -1,0 +1,102 @@
+<ion-header class="header">
+    <ion-toolbar class="toolbar">
+        <ion-buttons slot="start">
+            <ion-back-button
+                mode="ios"
+                defaultHref="/dishes"
+                text="Volver"
+            ></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ng-container *ngIf="dish$ | async as dish">
+    <ion-content>
+        <ion-header>
+            <ion-img
+                [src]="dish.image.data.attributes.url"
+            ></ion-img>
+        </ion-header>
+        <ion-grid>
+            <ion-row class="ion-margin-top">
+                <ion-col>
+                    <h1>{{ dish.name }}</h1>
+                </ion-col>
+            </ion-row>
+            <ion-row class="ion-margin-top">
+                <ion-col>
+                    <ion-chip
+                        *ngFor="let tag of dish.tags.data"
+                        color="primary"
+                        outline="true"
+                        >{{ tag.attributes.name }}</ion-chip
+                    >
+                </ion-col>
+            </ion-row>
+            <ion-row class="ion-margin-top">
+                <ion-col class="ion-margin-top">
+                    <h3>Receta</h3>
+                </ion-col>
+            </ion-row>
+            <ion-row class="ion-margin-top">
+                <ion-col>
+                    <div [innerHTML]="markedRecipe"></div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="ion-margin-top">
+                <ion-col class="ion-margin-top">
+                    <h3>Ingredientes</h3>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ul
+                        *ngFor="let igdntQtty of dish.ingredient_quantities.data"
+                    >
+                        - {{
+                        igdntQtty.attributes.ingredient.data.attributes.name }}:
+                        {{ igdntQtty.attributes.quantity * portionsNumber }} {{
+                        igdntQtty.attributes.ingredient.data.attributes.measurementUnit}}
+                    </ul>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-content>
+    <ion-footer class="footer">
+        <ion-row>
+            <ion-col>
+                <div class="portions-selector">
+                    <ion-button
+                        (click)="modifyPortions('subtract')"
+                        fill="clear"
+                        mode="ios"
+                    >
+                        <ion-icon
+                            slot="icon-only"
+                            name="remove-circle-outline"
+                            color="secondary"
+                        ></ion-icon>
+                    </ion-button>
+                    <p>{{ portionsNumber }} portions</p>
+                    <ion-button (click)="modifyPortions('add')" fill="clear">
+                        <ion-icon
+                            slot="icon-only"
+                            name="add-circle-outline"
+                            color="secondary"
+                            mode="ios"
+                        ></ion-icon>
+                    </ion-button>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row class="ion-margin-bottom">
+            <ion-col class="ion-text-center">
+                <ion-button
+                    (click)="addProductsToCart(dish)"
+                    expand="block"
+                    mode="ios"
+                    >Add to Cart</ion-button
+                >
+            </ion-col>
+        </ion-row>
+    </ion-footer>
+</ng-container>

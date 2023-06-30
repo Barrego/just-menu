@@ -1,0 +1,64 @@
+<ion-header class="header">
+    <ion-toolbar class="toolbar">
+        <ion-buttons slot="start">
+            <ion-back-button
+                mode="ios"
+                defaultHref="/login"
+                text="Volver"
+            ></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row class="login-block">
+            <ion-col class="ion-text-center">
+                <h3>Registrarse</h3>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="10" offset="1">
+                <ion-input
+                    class="input-field"
+                    label="Email"
+                    label-placement="floating"
+                    fill="outline"
+                    placeholder="Introduce tu email"
+                    type="text"
+                    [(ngModel)]="email"
+                ></ion-input>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="10" offset="1">
+                <ion-input
+                    class="input-field"
+                    label="Nombre de usuario"
+                    label-placement="floating"
+                    fill="outline"
+                    placeholder="Introduce tu nombre de usuario"
+                    type="text"
+                    [(ngModel)]="username"
+                ></ion-input>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="10" offset="1">
+                <ion-input
+                    class="input-field"
+                    label="Contraseña"
+                    label-placement="floating"
+                    fill="outline"
+                    placeholder="Introduce tu contraseña"
+                    type="password"
+                    [(ngModel)]="password"
+                ></ion-input>
+            </ion-col>
+        </ion-row>
+        <ion-row class="ion-margin-top">
+            <ion-col class="login-btn" size="10" offset="1">
+                <ion-button (click)="registrarse()" expand="block" mode="ios">Registrarse</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-row class="ion-margin-top">
+            <ion-col>
+                <ion-searchbar [(ngModel)]="searchText" placeholder="Introduce el nombre de un producto" mode="ios" [animated]="true"></ion-searchbar>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-header>
+
+<ng-container *ngIf="ingredients$ | async as ingredients">
+    <ion-content>
+        <ion-grid>
+            <ion-row *ngFor="let product of ingredients | filterIngredients: searchText">
+                <ion-col>
+                    <app-product-card [product]="product" (onCartProductAdded)="handleCartProductAdded($event)"></app-product-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-content>
+</ng-container>

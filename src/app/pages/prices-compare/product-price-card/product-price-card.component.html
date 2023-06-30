@@ -1,0 +1,24 @@
+<ion-card class="product-card" mode="ios">
+    <div class="img-container">
+        <img
+            [alt]="product.ingredient.name"
+            [src]="product.ingredient.image.data.attributes.url"
+        />
+    </div>
+    <div class="product-data">
+        <h5 class="product-name">
+            {{ product.ingredient.name }}
+        </h5>
+        <p class="product-amount">
+            {{ product.amount }} {{ product.ingredient.measurementUnit }}
+        </p>
+        <div class="divider"></div>
+        <p
+            class="product-price"
+            *ngFor="let price of product.ingredient.prices.data"
+        >
+            - {{ price.attributes.market.data.attributes.name }}:
+            {{ getRelativePrice(product.amount, price.attributes.amount, product.ingredient.measurementUnit) }}€
+        </p>
+    </div>
+</ion-card>
